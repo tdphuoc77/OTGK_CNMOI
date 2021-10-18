@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body style="display: flex; flex-direction: column; align-items: center; background-color: #4BFFCD;">
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <input name="maCongTy" type="text" placeholder="Mã công ty" />
+        <input name="tenCongTy" type="text" placeholder=" Tên công ty" />
+        <input name="anhDaiDien" type="text" placeholder=" Ảnh đại diện" />
+        <input type="submit" value="Thêm Công Ty" />
+    </form>
+
+    <div style="width: 100%; margin-top: 20px;">
+        <%data.forEach(item=> {%>
+            <div style="width: 30%; height: 450px;float: left; background-color: white;margin-left: 5px;">
+                <img src="<%=item.anhDaiDien%>" style="width: 400px;height: 380px; margin-top: 10px;" />
+                <br>
+                <a href="/<%=item.maCongTy%>">Tên công ty : <%=item.tenCongTy%> </a>
+                <br>
+                <!-- <form method="post" action="/delete/<%=item.maCongTy%>">
+                    <input type="submit" value="Xóa">
+                    
+                </form> -->
+
+                <button onclick="myfunction(<%=item.maCongTy%>)">Delete</button>
+
+            </div>
+            <%})%>
+    </div>
+
+
+    <script type="text/javascript">
+        function myfunction(id) {
+            var r = confirm("xóa không ?");
+            if (r == true) {
+                window.location.href = "http://localhost:3000/delete/" + id
+            }
+        }
+    </script>
+</body>
+
+</html>
